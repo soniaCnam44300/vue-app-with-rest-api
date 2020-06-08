@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>tp defibrilateur</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<style>
+body{
+  background: linear-gradient(#89baf1, #e0ebf2);
+  
+}
+.container-media{
+    max-width: 50px;
+}
+
+img {
+    border-style: none;
+    max-width: 250px;
+    left: 50%;
+    align-items: inherit;
+    translate: 50%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#container{
+  border: 1px solid black;
+  margin: 10px;
+  padding: 15px;
+}
+
+#jumbotron{
+  /* background-color: aquamarine; */
+  margin-bottom: 50px;
+}
+
+.imginfo{
+  display: none; 
+}
+
+@media screen and (max-width: 640px) {
+  img {
+    max-width: 100px;
+    translate: 100%;
+    margin-left: 20px;
+  }
+  .imginfo{
+    display: block;
+  }
+
+  #mgRight{
+    display: none;
+  }
+}
+</style>
+    
+<div class='row d-flex flex-row justify-content-center' id='jumbotron'>
+        <div class="col-sm-12 col-md-4">
+          <div class="col-sm-12 col-md-12">
+            <img src="https://i.pinimg.com/originals/90/95/dd/9095ddbf69428ebd71e232850b96eaed.jpg" alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <h3 class="display-5" style="text-align: center;">Défibrilateur de la ville de Nantes</h3>
+          </div>
+        </div>
+    </div> 
+</div> 
+    
+
+    <div class='row d-flex flex-row justify-content-center'>
+      <div class='col-12 col-md-4' style="display: -webkit-inline-box;">
+          <img class='img1' src="https://i.f1g.fr/media/eidos/300x570/2018/08/23/INF8999e8aa-a6c2-11e8-8783-1d0c50667def-300x570.jpg"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
+          <img class='imginfo' src="https://i.skyrock.net/9263/77999263/pics/3110571725_1_7_h6P321up.gif"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
+        </div>
+
+    <div class='col-sm-4' id="app">
+        <section v-if="errored">
+          <p>Nous sommes désolés, nous ne sommes pas en mesure de récupérer ces informations pour le moment. Veuillez réessayer ultérieurement.</p>
+        </section>    
+      
+        <section v-else>
+          <div v-if="loading">Chargement...</div>
+      
+          <div v-else>
+            <div v-for="i in info" class="infos" > 
+              <div class='d-flex justify-content-center'>
+                <div class="col-md-12" id=container>
+           
+              Sites : {{i.fields.designation}} <br>
+              Nature du site : {{i.fields.nature_site}} <br>
+              Adresse du site : {{i.fields.adresse}} <br>
+               <!-- <pre>{{i}}</pre>  -->
+              
+                </div>
+              </div>
+          </div>
+        </section> 
+    </div>
+
+  <div class='col-sm-4' id='mgRight'> 
+    <img src="https://i.skyrock.net/9263/77999263/pics/3110571725_1_7_h6P321up.gif"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
+  </div>  
+</head>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      info: null,
+      loading: true,
+      errored: false   
+    }
+  },
+
+  mounted () {
+    // const URL = "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&q=&facet=nature_site"
+    const URL = "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&q=&rows=10&sort=designation&facet=nature_site"
+    axios
+      .get(URL)
+      .then(response => {
+          this.info = response.data.records
+          console.log(response.data.records.length)
+          console.log(response.data.records[0].fields)
+      })
+      
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+
+      .finally(() => this.loading = false)
+  }
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html> 
