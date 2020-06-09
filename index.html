@@ -24,9 +24,7 @@ body{
 img {
   border-style: none;
   max-width: 250px;
-  left: 50%;
   align-items: inherit;
-  translate: 50%;
   margin-top: 20px;
   margin-bottom: 30px;
   max-height: 300px;
@@ -43,7 +41,6 @@ img {
 .card-body {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    min-height: 1px;
     padding: 1.25rem;
     background-color: aliceblue;}
 
@@ -84,26 +81,36 @@ img {
   max-height: 200px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 800px) {
    img {
-    max-width: 150px;
+    max-width: 100px;
     translate: 70%;
     margin-left: 20px;
   }
 
+  #mgRight{
+   display: none;}
 
-  #mgRight img:hover { 
-  max-width: 250px;
+#mgRight img { 
+  max-width: 200px;
+  translate: -50%;
   z-index: 10;
 } 
-
-  .img1{
-    display: none;
+  h3{
+    font-size: 1.7rem;
   }
   .img2{
     max-width: 200px;
     max-height: 200px;
     display: block;
+  }
+  .img1{
+    display: none;
+  }
+  .imgNantes{
+    max-width: 200px;
+    margin-left: 0px;
+
   }
 }
 </style>
@@ -112,16 +119,16 @@ img {
     <div class='row d-flex flex-row justify-content-center' id='jumbotron'>
         <div class="" style="display: contents;">
 
-          <div class='col-md-4 col-sm-3 ' id='mgRight'> 
+          <div class='col-lg-4-offset-1 col-md-4 col-sm-12 ' id='mgRight'> 
             <img  src="https://i.skyrock.net/9263/77999263/pics/3110571725_1_7_h6P321up.gif"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">            <img class='img2' style="display: none;" src="https://i.f1g.fr/media/eidos/300x570/2018/08/23/INF8999e8aa-a6c2-11e8-8783-1d0c50667def-300x570.jpg"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
           </div>
         
-          <div class="col-md-4 col-sm-3 ">
-            <img src="https://i.pinimg.com/originals/90/95/dd/9095ddbf69428ebd71e232850b96eaed.jpg" alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
+          <div class="col-lg-4 col-md-4  col-sm-12 ">
+            <img class="imgNantes" src="https://i.pinimg.com/originals/90/95/dd/9095ddbf69428ebd71e232850b96eaed.jpg" alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
             <h3 class="display-5" style="text-align: center;">Défibrilateur de la ville de Nantes</h3>
             <input type="text" class="bar" v-model="searchString" placeholder="Rechercher" />
           </div>
-          <div class='col-md-4 col-sm-3' >
+          <div class='col-lg-4 col-md-4  col-sm-12' >
             <img class='img1' src="https://i.f1g.fr/media/eidos/300x570/2018/08/23/INF8999e8aa-a6c2-11e8-8783-1d0c50667def-300x570.jpg"  alt="Défibrillateur, Premiers Soins, Sauvetage, La Vie">
         </div>
       </div>
@@ -138,11 +145,11 @@ img {
             <div class='row d-flex flex-row justify-content-center'>
             
             <!-- // Permet de parcourir le tableau -->
-              <div v-for="i in filteredInfo" class="col-md-3 col-sm-10"  > 
+              <div v-for="i in filteredInfo" class="col-lg-4 col-md-6 col-sm-10"  > 
               <!-- <div class='d-flex justify-content-center'> -->
                 
 
-                <div class="card" style="width: 18rem;padding: 10px;margin-right: 40px;margin-top: 20px;margin-left: 40px;border: 1px solid black;border-radius: 10px;background-color: cadetblue;">
+                <div class="card" style="min-height: 20rem;padding: 10px;margin-right: 40px;margin-top: 20px;margin-left: 40px;border: 1px solid black;border-radius: 10px;background-color: cadetblue;">
                   <div class="card-body">
                     <h5 class="card-title">{{i.fields.designation}}</h5>
                     <p class="card-text">Nature du site : {{i.fields.nature_site}}</p>
