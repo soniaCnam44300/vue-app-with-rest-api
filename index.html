@@ -29,12 +29,23 @@ img {
   translate: 50%;
   margin-top: 20px;
   margin-bottom: 30px;
+  max-height: 300px;
 }
-
+.card-title {
+    margin-bottom: .75rem;
+    text-align: center;
+    font-weight: bold;
+}
 #mgRight img:hover { 
   opacity: 1;
   max-width: 1000px;
 }
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    background-color: aliceblue;}
 
 #container{
   border: 1px solid black;
@@ -96,7 +107,7 @@ img {
   }
 }
 </style>
-<div class='' id="app">
+<div  id="app" style="margin: 5%;">
                        <!-- Jumbotron -->
     <div class='row d-flex flex-row justify-content-center' id='jumbotron'>
         <div class="" style="display: contents;">
@@ -127,15 +138,19 @@ img {
             <div class='row d-flex flex-row justify-content-center'>
             
             <!-- // Permet de parcourir le tableau -->
-              <div v-for="i in filteredInfo" class="col-md-3 col-sm-10" style="padding: 10px;margin-right: 40px;margin-top: 20px;margin-left: 40px;border: 1px solid black;border-radius: 10px;" > 
+              <div v-for="i in filteredInfo" class="col-md-3 col-sm-10"  > 
               <!-- <div class='d-flex justify-content-center'> -->
                 
-                  <div>Sites : {{i.fields.designation}}   </div>
-                  <div>Sites : {{i.fields.designation}}</div> 
-                  <div> Nature du site : {{i.fields.nature_site}}</div>
-                  <div> Adresse du site : {{i.fields.adresse}} </div>
-                  <div> horaire : de  {{i.fields.heure_ouverture}} à {{i.fields.heure_fermeture}} </div>
-                  <div> Localisaton : {{i.fields.position_precise}} </div>
+
+                <div class="card" style="width: 18rem;padding: 10px;margin-right: 40px;margin-top: 20px;margin-left: 40px;border: 1px solid black;border-radius: 10px;background-color: cadetblue;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.fields.designation}}</h5>
+                    <p class="card-text">Nature du site : {{i.fields.nature_site}}</p>
+                    <p class="card-text">adresse : {{i.fields.adresse}}</p>
+                    <p class="card-text">horaire : de  {{i.fields.heure_ouverture}} à {{i.fields.heure_fermeture}}</p>
+                    <p class="card-text">Localisaton : {{i.fields.position_precise}}</p>
+                  </div>
+                </div>
               
                 </div>
               </div>
